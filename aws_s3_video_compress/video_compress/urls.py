@@ -1,3 +1,5 @@
 from django.conf.urls import url
 
-urlpatterns = []
+urlpatterns = [
+    url('', 'video_compress.views.add_video', name='add_video'),
+]
