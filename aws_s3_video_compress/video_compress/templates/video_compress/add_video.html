@@ -28,7 +28,14 @@
 
         <!-- Top content -->
         <div>
-                <div class="container">       
+                <div class="container">
+                    <div class="row">
+                      {% if video_successfully_uploaded == True %}
+                        <div class="discription form-top">
+                          <p><strong>Your video is added successfully!</strong></p>
+                        </div>
+                      {% endif %}
+                    </div>        
                     <div class="row">
                         <div class="col-sm-5">
                          <div class="form-box form-top">
