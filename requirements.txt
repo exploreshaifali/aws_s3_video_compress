@@ -1,0 +1,14 @@
+Django==1.8.6
+amqp==1.4.7
+anyjson==0.3.3
+argparse==1.2.1
+billiard==3.3.0.21
+boto==2.38.0
+celery==3.1.19
+django-celery==3.1.17
+django-storages==1.1.8
+kombu==3.0.29
+psycopg2==2.6.1
+pytz==2015.7
+redis==2.10.5
+wsgiref==0.1.2
