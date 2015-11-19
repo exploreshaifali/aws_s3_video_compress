@@ -13,14 +13,6 @@ def video_compress_task(uploaded_video_name, object_id, width, height, audio_fre
     """Compress the video and save on s3"""
     print("in the video_compress_task")
 
-    #Error coming here!
-    # import pdb
-    # pdb.set_trace()
-    # from celery.contrib import rdb
-    # rdb.set_trace()
-    print(uploaded_video_name)
-    print object_id
-    print width
     # calculate resolution
     resolution = 'scale=' + width + ":-" + height
     print resolution
