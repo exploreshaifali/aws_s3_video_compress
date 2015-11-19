@@ -15,7 +15,7 @@ def video_compress_task(uploaded_video_name, object_id, width, height, audio_fre
 
     # calculate resolution
     resolution = 'scale=' + width + ":-" + height
-    print resolution
+    print(resolution)
 
     # compress video using ffmpeg
     p = Popen(['ffmpeg', '-i', "./compressing/"+uploaded_video_name,
