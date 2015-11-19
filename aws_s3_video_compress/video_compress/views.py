@@ -6,7 +6,7 @@ from video_compress.tasks import video_compress_task, hello_task
 # Create your views here.
 
 def add_video(request):
-    #set a flag to keep track is form is submitted, to show a success message
+    #set a flag to keep track if form is submitted, show a success message
     video_successfully_uploaded = None
     # if request is post, its form submission time :)
     if request.method == "POST":
@@ -31,9 +31,9 @@ def add_video(request):
             # save video on s3
             print("Now actually saving data.")
             form_data = form.save()
-            #make the success message True
+            #make the success message flag True
             video_successfully_uploaded = True
-            # gave the primary key of newly saved object so that the video_compression task can update same
+            # get the primary key of newly saved object so that the video_compression task can update same
             object_id = form_data.id
             print(uploaded_video, object_id, width, height, audio_frequency)
 
@@ -45,7 +45,7 @@ def add_video(request):
     else:
         print("its get request")
         form = VideoForm()
-    # get list of all videos saved in s3
+    # get list of all compressed videos saved in s3
     all_videos = Video.objects.order_by('-id').exclude(compressed_video='')
     return render(request, 'video_compress/add_video.html', {'form': form, 'video_list': all_videos,
                   'video_successfully_uploaded': video_successfully_uploaded})
