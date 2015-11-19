@@ -7,9 +7,10 @@ It uses postgreSQL as database, AWS S3 to store videos, ffmpeg to compress video
 ##How it works?
   1. User upload video and provide specifications to compress it.
   1. Uncompressed video get saved on S3.
-  1. At the same time it also on server disk.
+  1. At the same time it also get save on server disk.
   1. After that a task(that contain specification given by user, video name and primary key of above stored object) is send to queue(amqp) to compress video .
-  1. Lastly compressed video gets saved on S3 and same object is updated in databse.
+  1. Video gets compress using ffmpeg library.
+  1. Lastly compressed video gets saved on S3 and same object is updated in database.
 
 ##Setup for developers
 --------------------
