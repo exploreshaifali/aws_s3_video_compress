@@ -24,7 +24,7 @@ It uses postgreSQL as database, AWS S3 to store videos, ffmpeg to compress video
  ```bash
  $ virtualenv venv
  $ source venv/bin/activate
- $ pip install -r requirements/dev.txt
+ $ pip install -r requirements.txt
  ```
 1. Create `video_compress_db` database, where `video_compress_db` might be any suitable name.
 1. Fill in the database details in `aws_s3_video_compress/settings.py`.
