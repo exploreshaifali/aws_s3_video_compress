@@ -1,4 +1,5 @@
 from django.core.files.base import File
+from django.conf import settings
 from subprocess import Popen, PIPE
 
 from aws_s3_video_compress.celery import app
@@ -17,18 +18,21 @@ def video_compress_task(uploaded_video_name, object_id, width, height, audio_fre
     resolution = 'scale=' + width + ":-" + height
     print(resolution)
 
+    #calculate path of folder where video is saved
+    path = settings.BASE_DIR + '/compressing/'
+
     # compress video using ffmpeg
-    p = Popen(['ffmpeg', '-i', "./compressing/"+uploaded_video_name,
+    p = Popen(['ffmpeg', '-i', path+uploaded_video_name,
                '-vf', resolution,
-               './compressing/compressed_'+uploaded_video_name], stdout=PIPE, stdin=PIPE)
+               path+'compressed_'+uploaded_video_name], stdout=PIPE, stdin=PIPE)
     p.communicate()
     print("video is compressed")
 
     # delete local uncompressed saved video
-    delete_file("./compressing/"+uploaded_video_name)
+    delete_file(path+uploaded_video_name)
 
     # get the compressed video
-    compressed_video = open('./compressing/compressed_'+uploaded_video_name, 'rb')
+    compressed_video = open(path+'compressed_'+uploaded_video_name, 'rb')
 
     # get saved object from database to update with compressed video
     print("Now actually saving compressed video.")

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.conf import settings
 from video_compress.forms import VideoForm
 from video_compress.models import Video
 from video_compress.tasks import video_compress_task, hello_task
@@ -24,8 +25,10 @@ def add_video(request):
 
             # get the uploaded video
             uploaded_video = request.FILES['video']
+            #calculate path of folder where video is saved
+            path = settings.BASE_DIR + '/compressing/'
             # storing video on local disk before sending it to s3
-            with open('./compressing/'+uploaded_video.name, 'wb+') as destination:
+            with open(path+uploaded_video.name, 'wb+') as destination:
                 destination.write(uploaded_video.read())
 
             # save video on s3
