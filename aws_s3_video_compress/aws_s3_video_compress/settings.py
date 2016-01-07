@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'djcelery',
     'storages',
+    'rest_framework',
     'video_compress',
 )
 
