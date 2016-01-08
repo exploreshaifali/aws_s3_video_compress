@@ -67,8 +67,8 @@
 					<div class="row">
 					  <h2><strong>Here are all videos </strong></h2>
 					<div class="col-xs-12 col-md-4">
-                      {% for vi in video_list %}
-                        <a href="{{ vi.compressed_video.url }}" target="blank">{{ vi.title }}</a>
+                      {% for vi in serializer %}
+                        <a href="{{ vi.compressed_video }}" target="blank">{{ vi.title }}</a>
                         </div>
                       {% if forloop.counter|divisibleby:3 %}
                         <div class="row">
