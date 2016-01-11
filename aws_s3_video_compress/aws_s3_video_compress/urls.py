@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from aws_s3_video_compress.views import HomePageView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', include('video_compress.urls')),
+    url(r'^api/v1$', include('video_compress.urls')),
+    url(r'', HomePageView.as_view(), name = 'home'),
 ]
