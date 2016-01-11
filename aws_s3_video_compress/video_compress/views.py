@@ -3,7 +3,7 @@ from video_compress.serializers import VideoSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.decorators import api_view
 from rest_framework import status
 from django.shortcuts import render
 from django.conf import settings
@@ -17,8 +17,8 @@ class VideoList(APIView):
     """
     List all videos, or create a new video.
     """
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'video_compress/add_video.html'
+    # renderer_classes = [TemplateHTMLRenderer]
+    # template_name = 'video_compress/add_video.html'
 
     #set a flag to keep track if form is submitted, show a success message
     video_successfully_uploaded = None
@@ -26,9 +26,9 @@ class VideoList(APIView):
     def get(self, request, format=None):
         print("inside GET request")
         videos = Video.objects.all()
-        form = VideoForm()
+        # form = VideoForm()
         serializer = VideoSerializer(videos, many=True)
-        return Response({'serializer': serializer.data, 'form': form})
+        return Response(serializer.data)
 
     def post(self, request, format=None):
         print("inside post request")
